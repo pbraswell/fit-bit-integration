@@ -24,6 +24,8 @@ gem 'omniauth-fitbit'
 gem 'figaro'
 
 group :development do
+  gem 'pry-rails'
+  gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'foreman'

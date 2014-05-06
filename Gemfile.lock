@@ -31,6 +31,9 @@ GEM
     airbrake (3.1.16)
       builder
       multi_json
+    annotate (2.6.3)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -100,6 +103,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.5.3)
     minitest (5.3.3)
@@ -123,6 +127,12 @@ GEM
       omniauth (~> 1.0)
     pg (0.17.1)
     polyglot (0.3.4)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -180,6 +190,7 @@ GEM
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    slop (3.5.0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -216,6 +227,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake
+  annotate
   better_errors
   binding_of_caller
   bourbon
@@ -236,6 +248,7 @@ DEPENDENCIES
   omniauth
   omniauth-fitbit
   pg
+  pry-rails
   rack-timeout
   rails (>= 4.0.0)
   rails_12factor
