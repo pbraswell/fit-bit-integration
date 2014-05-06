@@ -19,6 +19,9 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'unicorn'
+gem 'omniauth'
+gem 'omniauth-fitbit'
+gem 'figaro'
 
 group :development do
   gem 'better_errors'
