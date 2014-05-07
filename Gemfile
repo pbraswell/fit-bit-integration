@@ -22,6 +22,7 @@ gem 'unicorn'
 gem 'omniauth'
 gem 'omniauth-fitbit'
 gem 'figaro'
+gem 'rest-client'
 
 group :development do
   gem 'pry-rails'

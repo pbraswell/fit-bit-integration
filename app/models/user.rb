@@ -23,4 +23,14 @@ class User < ActiveRecord::Base
       user
     end
   end
+
+  def test
+   result = RestClient::Request.execute(
+     :method => :get ,
+     :url => "www.google.com",
+     :headers => :'x-auth-key' => "mykey"
+     )
+   result 
+  end
+
 end
