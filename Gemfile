@@ -23,6 +23,9 @@ gem 'omniauth'
 gem 'omniauth-fitbit'
 gem 'figaro'
 gem 'rest-client'
+gem 'fitgem'
+gem 'tzinfo'
+gem 'oauth'
 
 group :development do
   gem 'pry-rails'
@@ -30,6 +33,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'foreman'
+  gem 'watson-ruby'
 end
 
 group :development, :test do

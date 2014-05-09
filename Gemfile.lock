@@ -85,6 +85,8 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    fitgem (0.9.0)
+      oauth
     flutie (2.0.0)
     foreman (0.66.0)
       dotenv (~> 0.7.0)
@@ -218,6 +220,8 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    watson-ruby (1.6.3)
+      json
     webmock (1.17.4)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
@@ -240,6 +244,7 @@ DEPENDENCIES
   email_validator
   factory_girl_rails
   figaro
+  fitgem
   flutie
   foreman
   high_voltage
@@ -247,6 +252,7 @@ DEPENDENCIES
   launchy
   neat
   newrelic_rpm (>= 3.6.7)
+  oauth
   omniauth
   omniauth-fitbit
   pg
@@ -262,6 +268,8 @@ DEPENDENCIES
   simple_form
   simplecov
   timecop
+  tzinfo
   uglifier
   unicorn
+  watson-ruby
   webmock
