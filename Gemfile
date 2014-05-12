@@ -33,6 +33,14 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'foreman'
+  gem 'brakeman'
+  gem 'growl'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
+  gem 'guard-bundler'
+  gem 'guard-brakeman'
+  gem 'annotate'
   gem 'watson-ruby'
 end
 
@@ -49,6 +57,9 @@ group :test do
   gem 'simplecov', require: false
   gem 'timecop'
   gem 'webmock'
+  gem 'rspec-expectations' 
+  gem 'rspec-mocks'
+  gem 'rb-fsevent' 
 end
 
 group :staging, :production do

@@ -18,6 +18,5 @@ FactoryGirl.define do
     provider "MyString"
     oauth_token "MyString"
     oauth_secret "MyString"
-    belongs_to ""
   end
 end

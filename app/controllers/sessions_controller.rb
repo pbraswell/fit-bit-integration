@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
    
     auth_hash = request.env["omniauth.auth"]
 
-    user = User.from_omniauth(auth_hash)
+    user = User.from_omniauth auth_hash
     if user.persisted?
       flash.notice = "Signed in!"
       redirect_to '/'
