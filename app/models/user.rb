@@ -54,13 +54,19 @@ class User < ActiveRecord::Base
   protected
 
     def post_process_response response
-      formated_response = {
-        :minutes_to_fall_asleep => response["sleep"].first["minutesToFallAsleep"],
-        :awakenings_count => response["sleep"].first["awakeningsCount"],
-        :awake_duration => response["sleep"].first["awakeDuration"],
-        :minutes_asleep => response["sleep"].first["minutesAsleep"],
-        :time_in_bed => response["sleep"].first["timeInBed"]
-      }
+      logger.info "ressponse: #{response}"
+      if response["summary"]["totalSleepRecords"] > 0
+        formated_response = {
+          :minutes_to_fall_asleep => response["sleep"].first["minutesToFallAsleep"],
+          :awakenings_count => response["sleep"].first["awakeningsCount"],
+          :awake_duration => response["sleep"].first["awakeDuration"],
+          :minutes_asleep => response["sleep"].first["minutesAsleep"],
+          :time_in_bed => response["sleep"].first["timeInBed"]
+        }
+      else
+        formated_response = {}
+      end
+      formated_response
     end
 
 
