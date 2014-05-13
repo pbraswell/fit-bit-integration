@@ -22,28 +22,21 @@ class User < ActiveRecord::Base
     user
   end
 
-  def test
+  def get_todays_sleep_log 
+    get_sleep_log_by_date (Date.today)
+  end
+
+  def get_sleep_log_by_date date
+    logger.info "getting todays sleep log for #{self.username}"
     consumer_key = ENV['FIT_BIT_CONSUMER_KEY']
     consumer_secret = ENV['FIT_BIT_CONSUMER_SECRET']
-    puts "using #{consumer_key} and #{consumer_secret}"
     @consumer = OAuth::Consumer.new(consumer_key, consumer_secret,{
                                :site => "http://api.fitbit.com"})
-    date = DateTime.now
-
-    # # make the access token from your consumer
-    # access_token = OAuth::AccessToken.new (self.authorizations.first.oauth_token, self.authorizations.first.oauth_secret)
-    puts "using #{self.authorizations.first.oauth_token} and #{self.authorizations.first.oauth_secret}"
-    @access_token = OAuth::AccessToken.new(@consumer, self.authorizations.first.oauth_token, self.authorizations.first.oauth_secret) 
-    # # make a signed request!  
-    json = @access_token.get("/1/user/#{self.username}/sleep/date/#{date.strftime("%Y-%m-%d")}.json").body
-    puts json
-    # sleep_record = JSON.parse(json)
-    # puts "time to bed : #{sleep_record["sleep"][0]["startTime"]}"
-    # puts "time to fall asleep: #{sleep_record["sleep"][0]["minutesToFallAsleep"]}"
-    # puts "awakenings count: #{sleep_record["sleep"][0]["awakeningCount"]}"
-    # puts "awake duration: #{sleep_record["sleep"][0]["awakeDuration"]}"
-    # puts "minutes asleep: #{sleep_record["sleep"][0]["minutesAsleep"]}"
-    # puts "time in bed: #{sleep_record["sleep"][0]["minutesAsleep"]}"
+    @access_token = OAuth::AccessToken.new(@consumer, 
+                                           self.authorizations.first.oauth_token, 
+                                           self.authorizations.first.oauth_secret)
+    response = @access_token.get("/1/user/#{self.username}/sleep/date/#{date.strftime("%Y-%m-%d")}.json").body
+    post_process_response (JSON.parse response)
   end
 
   def create_or_update_provider_credentials auth
@@ -57,5 +50,18 @@ class User < ActiveRecord::Base
                                                 :oauth_token => auth['credentials']['token'],
                                                 :oauth_secret => auth['credentials']['secret'])
   end
+
+  protected
+
+    def post_process_response response
+      formated_response = {
+        :minutes_to_fall_asleep => response["sleep"].first["minutesToFallAsleep"],
+        :awakenings_count => response["sleep"].first["awakeningsCount"],
+        :awake_duration => response["sleep"].first["awakeDuration"],
+        :minutes_asleep => response["sleep"].first["minutesAsleep"],
+        :time_in_bed => response["sleep"].first["timeInBed"]
+      }
+    end
+
 
 end

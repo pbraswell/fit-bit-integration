@@ -1,0 +1,6 @@
+<h2>Get Today's Sleep record</h2>
+<%= form_tag(controller: "sleep_logs", action: "show") do %>
+  <%= label_tag(:q, "Fitbit user name:") %>
+  <%= text_field_tag(:username) %>
+  <%= submit_tag("Get") %>
+<% end %>
