@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
    
     auth_hash = request.env["omniauth.auth"]
 
-    user = User.from_omniauth auth_hash
+    user = User.from_omniauth auth_hash, session[:external_user]
+    logger.info "user in session is #{session[:external_user]}"
     if user.persisted?
       flash.notice = "Signed in!"
       redirect_to '/sleep_logs/index'
