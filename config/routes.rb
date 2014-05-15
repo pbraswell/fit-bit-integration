@@ -5,6 +5,7 @@ FitBitIntegration::Application.routes.draw do
   post 'sleep_logs/show'
 
   get 'authorization/auth_fitbit'
+  get 'authorization/is_linked/:id', to: 'authorization#is_linked'
   get 'auth/:provider/callback', to: 'sessions#create'
 
 end

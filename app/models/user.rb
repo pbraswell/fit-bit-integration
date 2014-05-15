@@ -13,9 +13,10 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
   has_many :authorizations
 
-  def self.from_omniauth auth, external_user
+  def self.from_omniauth auth, external_user 
     user = where(:username => external_user).first_or_create do |user|
       logger.info "creating user on auth request"
+      user.username = external_user
       user.save
     end
     user.create_or_update_provider_credentials auth
