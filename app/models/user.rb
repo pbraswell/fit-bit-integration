@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
       logger.info "ressponse: #{response}"
       if response["summary"]["totalSleepRecords"] > 0
         formated_response = {
+          :sleep_log_is_available => true,
           :minutes_to_fall_asleep => response["sleep"].first["minutesToFallAsleep"],
           :awakenings_count => response["sleep"].first["awakeningsCount"],
           :awake_duration => response["sleep"].first["awakeDuration"],
@@ -65,7 +66,9 @@ class User < ActiveRecord::Base
           :time_in_bed => response["sleep"].first["timeInBed"]
         }
       else
-        formated_response = {}
+        formated_response = {
+          :sleep_log_is_available => false
+        }
       end
       formated_response
     end

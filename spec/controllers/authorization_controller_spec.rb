@@ -15,13 +15,13 @@ describe AuthorizationController do
     end
 
     it 'returns true if user is linked' do
-      @expected = {:exists => true}.to_json
-      get :is_linked, id: user.id
+      @expected = {:linked => true}.to_json
+      get :is_linked, id: user.username
       expect(response.body).to eq @expected
     end
 
     it 'returns false if the user is not linked' do
-      @expected = {:exists => false}.to_json
+      @expected = {:linked => false}.to_json
       get :is_linked, id: 9999
       expect(response.body).to eq @expected 
     end 

@@ -9,7 +9,7 @@ class AuthorizationController < ApplicationController
   end
 
   def is_linked
-    response = {:exists => User.exists?(params[:id])} 
+    response = {:linked => User.exists?(:username => params[:id])} 
     respond_with(response)
   end
 
